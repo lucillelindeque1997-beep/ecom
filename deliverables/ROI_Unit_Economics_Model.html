@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROI and Unit Economics Model - Professional Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .document {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 11in;
+        }
+        
+        /* Header Styles */
+        .document-header {
+            border-bottom: 3px solid #16a34a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .document-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        
+        .document-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-size: 12px;
+            color: #475569;
+        }
+        
+        .meta-item {
+            display: flex;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            margin-right: 8px;
+            min-width: 80px;
+        }
+        
+        /* Executive Summary Banner */
+        .executive-banner {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .executive-banner h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric-highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .metric-highlight .value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .metric-highlight .label {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 35px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-icon {
+            margin-right: 12px;
+            font-size: 22px;
+        }
+        
+        /* Financial Tables */
+        .financial-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .financial-table th {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        
+        .financial-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .financial-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .financial-table .currency {
+            font-weight: 600;
+            color: #16a34a;
+        }
+        
+        .financial-table .negative {
+            color: #dc2626;
+        }
+        
+        .financial-table .positive {
+            color: #16a34a;
+        }
+        
+        /* Calculation Boxes */
+        .calculation-box {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #16a34a;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .calculation-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #16a34a;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        /* ROI Charts */
+        .chart-container {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .chart-title {
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1e293b;
+        }
+        
+        .bar-chart {
+            display: flex;
+            align-items: end;
+            height: 200px;
+            margin: 20px 0;
+            padding: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            border-left: 2px solid #e2e8f0;
+        }
+        
+        .bar {
+            flex: 1;
+            margin: 0 5px;
+            background: linear-gradient(to top, #16a34a, #22c55e);
+            position: relative;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .bar:hover {
+            filter: brightness(110%);
+            transform: translateY(-2px);
+        }
+        
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: 600;
+            color: #64748b;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .bar-value {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            font-weight: 600;
+            color: #1e293b;
+            background: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Risk Analysis */
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .risk-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .risk-high {
+            border-left: 4px solid #dc2626;
+        }
+        
+        .risk-medium {
+            border-left: 4px solid #d97706;
+        }
+        
+        .risk-low {
+            border-left: 4px solid #16a34a;
+        }
+        
+        .risk-probability {
+            background-color: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        /* Scenario Analysis */
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .scenario-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .scenario-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .scenario-conservative {
+            border-top: 4px solid #d97706;
+        }
+        
+        .scenario-target {
+            border-top: 4px solid #16a34a;
+        }
+        
+        .scenario-optimistic {
+            border-top: 4px solid #2563eb;
+        }
+        
+        .scenario-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .scenario-metric {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px dotted #e2e8f0;
+        }
+        
+        /* Interactive Elements */
+        .toggle-button {
+            background: linear-gradient(135deg, #16a34a, #15803d);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+        }
+        
+        .toggle-button.active {
+            background: linear-gradient(135deg, #15803d, #166534);
+        }
+        
+        .toggle-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .toggle-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .document {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.5in;
+            }
+            
+            .toggle-content {
+                display: block !important;
+            }
+            
+            .toggle-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <!-- Document Header -->
+        <div class="document-header">
+            <h1 class="document-title">ROI and Unit Economics Model</h1>
+            <h2 class="document-subtitle">E-commerce Checkout Abandonment Reduction Project</h2>
+            
+            <div class="document-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Document Version:</span>
+                    <span>1.3</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date:</span>
+                    <span>March 28, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Author:</span>
+                    <span>Business Analyst - Revenue Optimization Specialist</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Status:</span>
+                    <span style="color: #16a34a; font-weight: 600;">CFO Office - Approved</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Executive Summary Banner -->
+        <div class="executive-banner">
+            <h3>📊 Executive Financial Summary</h3>
+            <p>This ROI model demonstrates the financial justification for the checkout abandonment reduction initiative, projecting <strong>$166,667 in monthly revenue recovery</strong> during Phase 1, with <strong>$2M+ annual impact</strong> and <strong>ROI of 340%</strong> within the first year.</p>
+            
+            <div class="key-metrics">
+                <div class="metric-highlight">
+                    <div class="value">$580K</div>
+                    <div class="label">Total Investment</div>
+                </div>
+                <div class="metric-highlight">
+                    <div class="value">$166K</div>
+                    <div class="label">Monthly Recovery</div>
+                </div>
+                <div class="metric-highlight">
+                    <div class="value">196%</div>
+                    <div class="label">Year 1 ROI</div>
+                </div>
+                <div class="metric-highlight">
+                    <div class="value">4.2</div>
+                    <div class="label">Payback (Months)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current State Analysis -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">💰</span>
+                Current State Financial Analysis
+            </h2>
+            
+            <div class="calculation-box">
+                <div class="calculation-title">Revenue Loss Calculation</div>
+Monthly Potential Revenue: 16,667 carts × $100 AOV = $1,666,700
+Current Actual Revenue: 5,000 orders × $100 AOV = $500,000  
+Monthly Lost Revenue: $1,666,700 - $500,000 = $1,166,700
+
+Lost Revenue by Abandonment Stage:
+├─ Account Creation Required: $500,000 (42.9% of losses)
+├─ Shipping Information: $183,333 (15.7% of losses) 
+├─ Payment Information: $233,333 (20.0% of losses)
+└─ Final Processing: $250,000 (21.4% of losses)
+
+Payment Stage Focus: $500,000 + $233,333 + $250,000 = $983,333
+Conservative Phase 1 Target: $166,667 monthly ($2M annually)
+            </div>
+
+            <table class="financial-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Current Performance</th>
+                        <th>Monthly Impact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cart Initiations</strong></td>
+                        <td>16,667</td>
+                        <td>Base volume</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Account Creation Abandonment</strong></td>
+                        <td>35% (5,833 users)</td>
+                        <td class="currency negative">-$583,300 lost revenue</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Payment Process Abandonment</strong></td>
+                        <td>20% (2,167 users)</td>
+                        <td class="currency negative">-$216,700 lost revenue</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile vs Desktop Gap</strong></td>
+                        <td>10 percentage points</td>
+                        <td class="currency negative">-$250,000 mobile-specific loss</td>
+                    </tr>
+                    <tr style="background-color: #fef2f2;">
+                        <td><strong>Total Abandonment Impact</strong></td>
+                        <td>65% overall</td>
+                        <td class="currency negative">-$1,166,700 total monthly loss</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Projected Impact -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Projected Financial Impact
+            </h2>
+
+            <div class="chart-container">
+                <div class="chart-title">Revenue Recovery Scenarios</div>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 40%;">
+                        <div class="bar-value">$83K</div>
+                        <div class="bar-label">Conservative<br>(90% prob)</div>
+                    </div>
+                    <div class="bar" style="height: 80%;">
+                        <div class="bar-value">$167K</div>
+                        <div class="bar-label">Target<br>(70% prob)</div>
+                    </div>
+                    <div class="bar" style="height: 100%;">
+                        <div class="bar-value">$250K</div>
+                        <div class="bar-label">Optimistic<br>(30% prob)</div>
+                    </div>
+                    <div class="bar" style="height: 120%;">
+                        <div class="bar-value">$300K</div>
+                        <div class="bar-label">Stretch<br>(10% prob)</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="toggle-button" onclick="toggleContent('phase1-details')">View Phase 1 Details</button>
+            <button class="toggle-button" onclick="toggleContent('phase2-details')">View Phase 2 Projections</button>
+
+            <div id="phase1-details" class="toggle-content">
+                <div class="calculation-box">
+                    <div class="calculation-title">Phase 1: Revenue Recovery Calculation</div>
+Improvement Strategy: Guest Checkout + Mobile Optimization
+Target Abandonment Reduction: 30% → 20% (10 percentage points)
+Improvement Rate: 33% reduction in payment-stage abandonment
+
+Calculation:
+Current Payment Stage Losses: $500,000/month
+Phase 1 Recovery Rate: 33% of payment losses
+Monthly Revenue Recovery: $500,000 × 0.33 = $166,667
+Annual Phase 1 Impact: $166,667 × 12 = $2,000,004
+                </div>
+            </div>
+
+            <div id="phase2-details" class="toggle-content">
+                <div class="calculation-box">
+                    <div class="calculation-title">Phase 2: Additional Revenue Opportunities</div>
+Advanced Features Impact:
+├─ Quick-Pay Integration (Apple Pay, Google Pay): +$50K monthly
+├─ Personalization & AI Optimization: +$33K monthly  
+├─ Advanced Mobile Features: +$25K monthly
+└─ Customer Journey Analytics: +$17K monthly (retention)
+
+Total Phase 2 Additional Recovery: +$125K monthly
+Combined Phase 1 + 2: $291,667 monthly recovery potential
+Annual Combined Impact: $3,500,000+
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Analysis -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">💸</span>
+                Investment Requirements & Cost Structure
+            </h2>
+
+            <table class="financial-table">
+                <thead>
+                    <tr>
+                        <th>Investment Category</th>
+                        <th>Phase 1 ($240K)</th>
+                        <th>Phase 2 ($340K)</th>
+                        <th>Total Investment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Development Costs</strong></td>
+                        <td class="currency">$144,000 (60%)</td>
+                        <td class="currency">$238,000 (70%)</td>
+                        <td class="currency">$382,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technology & Infrastructure</strong></td>
+                        <td class="currency">$60,000 (25%)</td>
+                        <td class="currency">$68,000 (20%)</td>
+                        <td class="currency">$128,000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Project Management & BA</strong></td>
+                        <td class="currency">$36,000 (15%)</td>
+                        <td class="currency">$34,000 (10%)</td>
+                        <td class="currency">$70,000</td>
+                    </tr>
+                    <tr style="background-color: #f0fdf4;">
+                        <td><strong>Total Phase Investment</strong></td>
+                        <td class="currency positive">$240,000</td>
+                        <td class="currency positive">$340,000</td>
+                        <td class="currency positive">$580,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ROI Analysis -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📈</span>
+                ROI Analysis & Financial Projections
+            </h2>
+
+            <div class="scenario-grid">
+                <div class="scenario-card scenario-conservative">
+                    <div class="scenario-title">Conservative Scenario</div>
+                    <div class="scenario-metric">
+                        <span>Monthly Recovery:</span>
+                        <span class="currency">$125,000</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Annual Impact:</span>
+                        <span class="currency">$1,500,000</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Year 1 ROI:</span>
+                        <span class="positive">147%</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Payback Period:</span>
+                        <span>6.1 months</span>
+                    </div>
+                    <div class="risk-probability" style="background-color: #fed7aa;">70% Probability</div>
+                </div>
+
+                <div class="scenario-card scenario-target">
+                    <div class="scenario-title">Target Scenario</div>
+                    <div class="scenario-metric">
+                        <span>Monthly Recovery:</span>
+                        <span class="currency">$166,667</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Annual Impact:</span>
+                        <span class="currency">$2,000,004</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Year 1 ROI:</span>
+                        <span class="positive">196%</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Payback Period:</span>
+                        <span>4.6 months</span>
+                    </div>
+                    <div class="risk-probability" style="background-color: #bbf7d0;">70% Probability</div>
+                </div>
+
+                <div class="scenario-card scenario-optimistic">
+                    <div class="scenario-title">Optimistic Scenario</div>
+                    <div class="scenario-metric">
+                        <span>Monthly Recovery:</span>
+                        <span class="currency">$250,000</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Annual Impact:</span>
+                        <span class="currency">$3,000,000</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Year 1 ROI:</span>
+                        <span class="positive">295%</span>
+                    </div>
+                    <div class="scenario-metric">
+                        <span>Payback Period:</span>
+                        <span>2.8 months</span>
+                    </div>
+                    <div class="risk-probability" style="background-color: #bfdbfe;">30% Probability</div>
+                </div>
+            </div>
+
+            <div class="calculation-box">
+                <div class="calculation-title">3-Year NPV Calculation (8% Discount Rate)</div>
+Year 0: -$760,000 (initial investment)
+Year 1: $1,490,000 / (1.08)¹ = $1,379,630
+Year 2: $3,300,000 / (1.08)² = $2,829,218  
+Year 3: $3,700,000 / (1.08)³ = $2,937,757
+
+3-Year NPV = $1,379,630 + $2,829,218 + $2,937,757 - $760,000 = $6,386,605
+            </div>
+        </div>
+
+        <!-- Risk Analysis -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚖️</span>
+                Risk Analysis & Sensitivity Scenarios
+            </h2>
+
+            <div class="risk-matrix">
+                <div class="risk-item risk-high">
+                    <h4 style="color: #dc2626;">High Risk Factors</h4>
+                    <p><strong>Stakeholder Resistance:</strong> 60% feature adoption impact</p>
+                    <div class="risk-probability" style="background-color: #fecaca;">15% Probability</div>
+                </div>
+
+                <div class="risk-item risk-medium">
+                    <h4 style="color: #d97706;">Medium Risk Factors</h4>
+                    <p><strong>Technical Delays:</strong> 20% first year impact reduction</p>
+                    <div class="risk-probability" style="background-color: #fed7aa;">30% Probability</div>
+                </div>
+
+                <div class="risk-item risk-low">
+                    <h4 style="color: #16a34a;">Low Risk Factors</h4>
+                    <p><strong>Market Response:</strong> 10% effectiveness reduction</p>
+                    <div class="risk-probability" style="background-color: #bbf7d0;">40% Probability</div>
+                </div>
+            </div>
+
+            <div class="calculation-box">
+                <div class="calculation-title">Break-Even Analysis</div>
+Minimum Monthly Recovery for Break-Even: $63,333
+Minimum Abandonment Improvement: 3.8 percentage points
+Risk Threshold: Very low (>95% probability of exceeding break-even)
+
+Break-even occurs when monthly revenue recovery equals monthly cost of capital:
+$580,000 total investment ÷ 12 months = $48,333/month
+Adding operational costs: $48,333 + $15,000 = $63,333/month minimum
+            </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Success Metrics & Financial KPIs
+            </h2>
+
+            <table class="financial-table">
+                <thead>
+                    <tr>
+                        <th>KPI</th>
+                        <th>Current</th>
+                        <th>Month 3 Target</th>
+                        <th>Month 12 Target</th>
+                        <th>Tracking Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Monthly Revenue Recovery</strong></td>
+                        <td class="currency">$0</td>
+                        <td class="currency positive">$166,667</td>
+                        <td class="currency positive">$291,667</td>
+                        <td>Financial reporting</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conversion Rate Improvement</strong></td>
+                        <td>0%</td>
+                        <td class="positive">+33%</td>
+                        <td class="positive">+50%</td>
+                        <td>Analytics dashboard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Acquisition Cost (CAC)</strong></td>
+                        <td class="currency">$45</td>
+                        <td class="currency">$30</td>
+                        <td class="currency">$25</td>
+                        <td>Marketing attribution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Lifetime Value (CLV)</strong></td>
+                        <td class="currency">$350</td>
+                        <td class="currency">$385</td>
+                        <td class="currency">$420</td>
+                        <td>CRM analysis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Revenue per Visitor</strong></td>
+                        <td class="currency">$30</td>
+                        <td class="currency">$39</td>
+                        <td class="currency">$45</td>
+                        <td>Web analytics</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Financial Approval -->
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b;">
+            <strong>Financial Model Approval:</strong><br>
+            • CFO: Jennifer Martinez - Approved 03/28/2025<br>
+            • VP Digital Commerce: David Kim - Approved 03/28/2025<br>
+            • Head of Finance: Robert Chen - Approved 03/29/2025<br>
+            • Executive Committee: Approved for Phase 1 funding - 03/30/2025
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(contentId) {
+            // Hide all toggle contents
+            const contents = document.querySelectorAll('.toggle-content');
+            contents.forEach(content => {
+                if (content.id !== contentId) {
+                    content.classList.remove('active');
+                }
+            });
+            
+            // Toggle selected content
+            const target = document.getElementById(contentId);
+            target.classList.toggle('active');
+            
+            // Update button states
+            const buttons = document.querySelectorAll('.toggle-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            if (target.classList.contains('active')) {
+                event.target.classList.add('active');
+            }
+        }
+
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate bars on scroll
+            const bars = document.querySelectorAll('.bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'growUp 1s ease-out';
+                    }
+                });
+            });
+
+            bars.forEach(bar => observer.observe(bar));
+
+            // Add hover effects to scenario cards
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            scenarioCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.borderTopWidth = '6px';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.borderTopWidth = '4px';
+                });
+            });
+
+            // Add print button
+            const printButton = document.createElement('button');
+            printButton.textContent = '🖨️ Print Financial Model';
+            printButton.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #16a34a, #15803d);
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+                z-index: 1000;
+                transition: all 0.3s ease;
+            `;
+            
+            printButton.addEventListener('click', () => window.print());
+            document.body.appendChild(printButton);
+        });
+
+        // Add CSS for bar animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes growUp {
+                from {
+                    height: 0;
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

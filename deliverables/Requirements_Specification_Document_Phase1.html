@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requirements Specification Document - Professional Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .document {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 11in;
+        }
+        
+        /* Header Styles */
+        .document-header {
+            border-bottom: 3px solid #2563eb;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .document-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        
+        .document-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-size: 12px;
+            color: #475569;
+        }
+        
+        .meta-item {
+            display: flex;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            margin-right: 8px;
+            min-width: 100px;
+        }
+        
+        /* Priority Banner */
+        .priority-banner {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 35px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-icon {
+            margin-right: 12px;
+            font-size: 22px;
+        }
+        
+        .subsection-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #334155;
+            margin: 20px 0 12px 0;
+        }
+        
+        /* Requirement Boxes */
+        .requirement-box {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-left: 6px solid #2563eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .requirement-header {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .requirement-id {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: #2563eb;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .priority-badge {
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .priority-p0 {
+            background-color: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+        
+        .priority-p1 {
+            background-color: #fff7ed;
+            color: #ea580c;
+            border: 1px solid #fed7aa;
+        }
+        
+        .stakeholder-badge {
+            background-color: #eff6ff;
+            color: #2563eb;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .requirement-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+        
+        .requirement-statement {
+            background-color: #f8fafc;
+            border-left: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+        }
+        
+        /* Functional Specs */
+        .functional-spec {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .spec-title {
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .spec-list {
+            margin: 10px 0 10px 20px;
+        }
+        
+        .spec-list li {
+            margin-bottom: 6px;
+            padding-left: 4px;
+        }
+        
+        /* Acceptance Criteria */
+        .acceptance-criteria {
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #16a34a;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        
+        .acceptance-title {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #16a34a;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        /* Performance Requirements */
+        .performance-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 1px solid #fed7aa;
+            border-left: 4px solid #d97706;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .performance-title {
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+        
+        .performance-metric {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        
+        .performance-metric .metric-name {
+            font-weight: 600;
+        }
+        
+        .performance-metric .target {
+            color: #16a34a;
+            font-weight: 600;
+        }
+        
+        .performance-metric .current {
+            color: #dc2626;
+        }
+        
+        /* Integration Points */
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .integration-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .integration-title {
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .integration-icon {
+            margin-right: 8px;
+        }
+        
+        /* Success Metrics */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .metrics-table th {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 12px 8px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 11px;
+        }
+        
+        .metrics-table td {
+            padding: 10px 8px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+        
+        .metrics-table tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #2563eb;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 70px;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #2563eb;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 2px #2563eb;
+        }
+        
+        .timeline-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+        
+        /* Interactive Elements */
+        .collapsible {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #334155;
+            transition: background-color 0.3s ease;
+        }
+        
+        .collapsible-header:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.expanded {
+            max-height: 1000px;
+        }
+        
+        .collapsible-inner {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Print Styles */
+        @media print {
+            .document {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.5in;
+            }
+            
+            .collapsible-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            
+            .collapsible-header {
+                cursor: default;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <!-- Document Header -->
+        <div class="document-header">
+            <h1 class="document-title">Requirements Specification Document (RSD) - Phase 1</h1>
+            <h2 class="document-subtitle">E-commerce Checkout Abandonment Reduction Project</h2>
+            
+            <div class="document-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Document Version:</span>
+                    <span>2.0</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date:</span>
+                    <span>March 25, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Author:</span>
+                    <span>Business Analyst - Revenue Optimization Specialist</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Review Status:</span>
+                    <span style="color: #16a34a; font-weight: 600;">Approved by Technical Architecture Board</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Implementation:</span>
+                    <span>Phase 1 (Months 1-3)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Business Impact:</span>
+                    <span style="color: #16a34a; font-weight: 600;">$166,667 Monthly Revenue Recovery</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="priority-banner">
+            🚨 CRITICAL PROJECT - PHASE 1 REQUIREMENTS 🚨<br>
+            Target: 10-point abandonment reduction (30% → 20%) | Revenue Recovery: $166,667/month
+        </div>
+
+        <!-- Document Purpose -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📋</span>
+                Document Purpose & Scope
+            </h2>
+            <p>This Requirements Specification Document (RSD) defines the functional and non-functional requirements for Phase 1 of the checkout abandonment reduction initiative. These requirements represent the compromise solutions agreed upon by Marketing, Security, and UX stakeholder teams to achieve a 10-percentage-point reduction in cart abandonment (from 30% to 20%).</p>
+            
+            <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 15px; margin: 15px 0;">
+                <strong>Project Context:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>Current State:</strong> 30% cart abandonment at payment stage ($500K monthly lost revenue)</li>
+                    <li><strong>Phase 1 Goal:</strong> Reduce to 20% abandonment ($166,667 monthly revenue recovery)</li>
+                    <li><strong>Implementation Timeline:</strong> 3 months</li>
+                    <li><strong>Success Criteria:</strong> Measurable revenue recovery with maintained security and data collection standards</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Functional Requirements -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🎯</span>
+                Functional Requirements
+            </h2>
+
+            <!-- FR 1.1 -->
+            <div class="requirement-box">
+                <div class="requirement-header">
+                    <div class="requirement-id">FR-1.1</div>
+                    <div class="priority-badge priority-p0">Critical (P0)</div>
+                    <div class="stakeholder-badge">UX Team (Primary), Marketing (Secondary)</div>
+                </div>
+                
+                <div class="requirement-title">Guest Checkout with Strategic Data Capture</div>
+                
+                <div class="requirement-statement">
+                    The system SHALL provide a guest checkout option that allows transaction completion without mandatory account creation, while maintaining strategic data collection capabilities to address Marketing team concerns about customer data loss.
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>FR 1.1.1: Guest Checkout Entry Point</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Detailed Specifications:</div>
+                                <ul class="spec-list">
+                                    <li>The checkout initiation page SHALL display two prominent options:
+                                        <ul>
+                                            <li>Primary CTA: "Checkout as Guest" (recommended/highlighted option)</li>
+                                            <li>Secondary CTA: "Create Account & Save Info"</li>
+                                        </ul>
+                                    </li>
+                                    <li>Guest option SHALL be visually prominent with clear benefits messaging</li>
+                                    <li>Account option SHALL communicate value proposition (faster future checkouts, order history, etc.)</li>
+                                    <li>Page SHALL load within 1.5 seconds to prevent initial abandonment</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>FR 1.1.2: Guest Information Collection Strategy</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Data Collection Requirements:</div>
+                                <ul class="spec-list">
+                                    <li>Guest checkout SHALL collect minimum required information only:
+                                        <ul>
+                                            <li>Email address (required for order confirmation)</li>
+                                            <li>Shipping address (required for delivery)</li>
+                                            <li>Payment information (required for transaction)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Email field SHALL include pre-checked opt-in checkbox:
+                                        <br><em>✅ "Send me shipping updates and special offers (unsubscribe anytime)"</em></li>
+                                    <li>Opt-in rate target: 70% of guest users</li>
+                                    <li>System SHALL NOT require password creation during guest flow</li>
+                                    <li>System SHALL NOT require phone number (optional field only)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>FR 1.1.3: Post-Purchase Guest Conversion</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Conversion Strategy:</div>
+                                <ul class="spec-list">
+                                    <li>Upon order completion, system SHALL present soft account creation offer</li>
+                                    <li>Benefits messaging: Order tracking, easier returns, exclusive offers</li>
+                                    <li>System SHALL implement automated email sequence for guest users</li>
+                                    <li><strong>Target conversion rate:</strong> 15% of guest users to create accounts within 30 days</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acceptance-criteria">
+                    <div class="acceptance-title">Acceptance Criteria for FR 1.1:</div>
+GIVEN a user arrives at checkout with items in cart
+WHEN they view the checkout options page  
+THEN they see clearly differentiated guest vs. account options
+AND the guest option is visually prominent as the recommended choice
+AND the page loads within 1.5 seconds
+
+GIVEN a user selects guest checkout
+WHEN they complete the guest flow
+THEN they can complete purchase without creating password
+AND their email is captured with opt-in consent
+AND they receive post-purchase conversion offers
+AND their data is available to Marketing team within 24 hours
+
+GIVEN guest users complete purchases over 30 days
+WHEN conversion tracking is measured
+THEN at least 15% convert to full accounts
+AND opt-in email capture rate exceeds 70%
+AND Marketing team reports satisfactory data collection for CLV modeling
+                </div>
+            </div>
+
+            <!-- FR 1.2 -->
+            <div class="requirement-box">
+                <div class="requirement-header">
+                    <div class="requirement-id">FR-1.2</div>
+                    <div class="priority-badge priority-p0">Critical (P0)</div>
+                    <div class="stakeholder-badge">UX Team</div>
+                </div>
+                
+                <div class="requirement-title">Mobile Optimization for Checkout Experience</div>
+                
+                <div class="requirement-statement">
+                    The system SHALL provide an optimized mobile checkout experience with device-specific interface adaptations and intelligent form handling to reduce the disproportionately high mobile abandonment rate (currently 43% vs 30% desktop).
+                </div>
+
+                <div class="performance-box">
+                    <div class="performance-title">Mobile Performance Targets:</div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Page Load Speed (Mobile)</div>
+                        <div class="target">< 2.0 seconds</div>
+                        <div class="current">3.8 seconds</div>
+                    </div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Mobile Completion Rate</div>
+                        <div class="target">40%+</div>
+                        <div class="current">25%</div>
+                    </div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Touch Target Size</div>
+                        <div class="target">44px+ minimum</div>
+                        <div class="current">Varies</div>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>FR 1.2.1: Device Detection and Adaptation</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Mobile Interface Requirements:</div>
+                                <ul class="spec-list">
+                                    <li>System SHALL automatically detect device type (mobile, tablet, desktop)</li>
+                                    <li>Mobile interface SHALL use touch-optimized design elements</li>
+                                    <li>System SHALL adapt layout for screen sizes:
+                                        <ul>
+                                            <li>Single-column layout for screens <768px width</li>
+                                            <li>Optimized typography (minimum 16px font size)</li>
+                                            <li>Adequate white space for readability</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>FR 1.2.2: Intelligent Keyboard Selection</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Keyboard Optimization:</div>
+                                <ul class="spec-list">
+                                    <li><strong>Email fields:</strong> Email keyboard with @ symbol prominent</li>
+                                    <li><strong>Phone fields:</strong> Numeric keypad with dial symbols</li>
+                                    <li><strong>Credit card fields:</strong> Numeric keypad optimized for card entry</li>
+                                    <li><strong>ZIP code fields:</strong> Numeric keypad</li>
+                                    <li><strong>Address fields:</strong> Standard keyboard with predictive text</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acceptance-criteria">
+                    <div class="acceptance-title">Acceptance Criteria for FR 1.2:</div>
+GIVEN a user accesses checkout on mobile device
+WHEN they interact with form fields
+THEN appropriate keyboards appear automatically
+AND all touch targets are easily tappable (>44px)
+AND page loads within 2.0 seconds
+
+GIVEN a mobile user starts filling checkout forms  
+WHEN they switch between fields
+THEN auto-fill suggestions appear when available
+AND real-time validation provides immediate feedback
+AND progress through checkout is clearly indicated
+
+GIVEN mobile users complete the checkout process
+WHEN measured against desktop users
+THEN mobile completion rates improve to within 10% of desktop rates
+AND mobile page abandonment reduces by 50%
+                </div>
+            </div>
+        </div>
+
+        <!-- Non-Functional Requirements -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚡</span>
+                Non-Functional Requirements
+            </h2>
+
+            <div class="requirement-box">
+                <div class="requirement-header">
+                    <div class="requirement-id">NFR-1.1</div>
+                    <div class="priority-badge priority-p0">Critical (P0)</div>
+                    <div class="stakeholder-badge">Security Team (Primary), UX Team (Secondary)</div>
+                </div>
+                
+                <div class="requirement-title">Security and Performance Balance</div>
+                
+                <div class="requirement-statement">
+                    The system SHALL maintain current security standards and fraud prevention capabilities while achieving performance targets that prevent user abandonment due to slow processing times.
+                </div>
+
+                <div class="performance-box">
+                    <div class="performance-title">Critical Performance Requirements:</div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Fraud Verification Speed</div>
+                        <div class="target">< 0.5 seconds</div>
+                        <div class="current">1.2 seconds</div>
+                    </div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Page Load Time</div>
+                        <div class="target">< 2.0 seconds</div>
+                        <div class="current">3.2 seconds</div>
+                    </div>
+                    <div class="performance-metric">
+                        <div class="metric-name">System Uptime</div>
+                        <div class="target">99.5%</div>
+                        <div class="current">99.2%</div>
+                    </div>
+                    <div class="performance-metric">
+                        <div class="metric-name">Fraud Detection Accuracy</div>
+                        <div class="target">>99.2%</div>
+                        <div class="current">99.2%</div>
+                    </div>
+                </div>
+
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>NFR 1.1.1: Fraud Verification Performance</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div class="functional-spec">
+                                <div class="spec-title">Security Performance Standards:</div>
+                                <ul class="spec-list">
+                                    <li>Background fraud verification SHALL complete within 0.5 seconds maximum</li>
+                                    <li>Fraud check processing SHALL occur parallel to user form completion</li>
+                                    <li>System SHALL maintain current fraud detection accuracy (>99.2%)</li>
+                                    <li>High-risk transactions SHALL trigger additional verification without abandoning guest flow</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acceptance-criteria">
+                    <div class="acceptance-title">Acceptance Criteria for NFR 1.1:</div>
+GIVEN the fraud verification system is processing guest transactions
+WHEN a transaction requires fraud checking
+THEN the verification completes within 0.5 seconds
+AND fraud detection accuracy remains >99.2%
+AND user experience is not negatively impacted
+
+GIVEN users are accessing checkout pages
+WHEN pages are requested under normal load conditions
+THEN all pages load within 2.0 seconds
+AND Time to Interactive is under 2.5 seconds  
+AND no unexpected layout shifts occur
+
+GIVEN the system is under peak traffic load
+WHEN processing 3x normal transaction volume
+THEN all performance standards are maintained
+AND system availability remains >99.5%
+AND no security vulnerabilities are introduced
+                </div>
+            </div>
+        </div>
+
+        <!-- Integration Requirements -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔗</span>
+                Integration Requirements
+            </h2>
+            
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <div class="integration-title">
+                        <span class="integration-icon">📧</span>
+                        Marketing Automation Platform
+                    </div>
+                    <ul style="margin-left: 20px; font-size: 12px;">
+                        <li>Real-time data sync for guest user information</li>
+                        <li>Trigger setup for post-purchase email sequences</li>
+                        <li>Segmentation capabilities for guest vs. registered users</li>
+                        <li>Conversion tracking and attribution reporting</li>
+                    </ul>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-title">
+                        <span class="integration-icon">💳</span>
+                        Payment Processing System
+                    </div>
+                    <ul style="margin-left: 20px; font-size: 12px;">
+                        <li>Fraud detection API optimization for sub-0.5 second response</li>
+                        <li>Support for tokenized payment methods</li>
+                        <li>PCI compliance maintenance during guest flow</li>
+                        <li>Chargeback and dispute handling for guest transactions</li>
+                    </ul>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-title">
+                        <span class="integration-icon">📊</span>
+                        Analytics and Monitoring
+                    </div>
+                    <ul style="margin-left: 20px; font-size: 12px;">
+                        <li>Real-time conversion rate tracking</li>
+                        <li>A/B testing framework integration</li>
+                        <li>Performance monitoring and alerting</li>
+                        <li>Customer journey analytics and funnel analysis</li>
+                    </ul>
+                </div>
+
+                <div class="integration-card">
+                    <div class="integration-title">
+                        <span class="integration-icon">🎧</span>
+                        Customer Support Systems
+                    </div>
+                    <ul style="margin-left: 20px; font-size: 12px;">
+                        <li>Guest order lookup capabilities</li>
+                        <li>Order modification and cancellation workflows</li>
+                        <li>Returns and refund processing for guest purchases</li>
+                        <li>Customer service training materials and procedures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Metrics -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">📊</span>
+                Success Metrics and KPIs
+            </h2>
+
+            <table class="metrics-table">
+                <thead>
+                    <tr>
+                        <th>KPI</th>
+                        <th>Baseline</th>
+                        <th>Phase 1 Target</th>
+                        <th>Measurement Method</th>
+                        <th>Review Frequency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cart Abandonment Rate</strong></td>
+                        <td>30%</td>
+                        <td style="color: #16a34a; font-weight: 600;">20%</td>
+                        <td>Google Analytics funnel</td>
+                        <td>Daily</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly Revenue Recovery</strong></td>
+                        <td>$0</td>
+                        <td style="color: #16a34a; font-weight: 600;">$166,667</td>
+                        <td>Financial reporting</td>
+                        <td>Monthly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobile Completion Rate</strong></td>
+                        <td>25%</td>
+                        <td style="color: #16a34a; font-weight: 600;">40%</td>
+                        <td>Device-specific analytics</td>
+                        <td>Weekly</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Guest Checkout Adoption</strong></td>
+                        <td>0%</td>
+                        <td style="color: #16a34a; font-weight: 600;">70%</td>
+                        <td>Checkout option selection</td>
+                        <td>Daily</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email Opt-in Rate</strong></td>
+                        <td>N/A</td>
+                        <td style="color: #16a34a; font-weight: 600;">70%</td>
+                        <td>Marketing automation</td>
+                        <td>Daily</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Guest-to-Account Conversion</strong></td>
+                        <td>N/A</td>
+                        <td style="color: #16a34a; font-weight: 600;">15%</td>
+                        <td>30-day tracking cohorts</td>
+                        <td>Monthly</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Implementation Timeline -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🚀</span>
+                Implementation Timeline and Dependencies
+            </h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Month 1: Foundation and Core Development</div>
+                        <ul style="margin-left: 20px; font-size: 12px;">
+                            <li><strong>Week 1-2:</strong> Development environment setup, stakeholder alignment</li>
+                            <li><strong>Week 3-4:</strong> Guest checkout flow development and testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Month 2: Integration and Optimization</div>
+                        <ul style="margin-left: 20px; font-size: 12px;">
+                            <li><strong>Week 5-6:</strong> Mobile optimization implementation</li>
+                            <li><strong>Week 7-8:</strong> Security integration and performance testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Month 3: Testing and Launch</div>
+                        <ul style="margin-left: 20px; font-size: 12px;">
+                            <li><strong>Week 9-10:</strong> User acceptance testing, stakeholder validation</li>
+                            <li><strong>Week 11-12:</strong> Production deployment and monitoring setup</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requirements Approval -->
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b;">
+            <strong>Requirements Approval:</strong><br>
+            • Business Stakeholder: VP Digital Commerce - Approved 03/25/2025<br>
+            • Technical Lead: Senior Software Architect - Approved 03/25/2025<br>
+            • Security Lead: Information Security Manager - Approved 03/26/2025<br>
+            • UX Lead: Head of User Experience - Approved 03/24/2025<br>
+            • Marketing Lead: Digital Marketing Director - Approved 03/26/2025
+        </div>
+    </div>
+
+    <script>
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+
+        // Add interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to requirement boxes
+            const requirementBoxes = document.querySelectorAll('.requirement-box');
+            requirementBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                });
+            });
+
+            // Add hover effects to integration cards
+            const integrationCards = document.querySelectorAll('.integration-card');
+            integrationCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.transition = 'transform 0.2s ease';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Timeline scroll animation
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+
+            timelineItems.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                item.style.transition = 'all 0.6s ease';
+                observer.observe(item);
+            });
+
+            // Add print button
+            const printButton = document.createElement('button');
+            printButton.textContent = '🖨️ Print Requirements';
+            printButton.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #2563eb, #1d4ed8);
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+                z-index: 1000;
+                transition: all 0.3s ease;
+            `;
+            
+            printButton.addEventListener('click', () => window.print());
+            document.body.appendChild(printButton);
+        });
+    </script>
+</body>
+</html>

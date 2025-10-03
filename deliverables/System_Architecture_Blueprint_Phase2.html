@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture Blueprint - Phase 2</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #ffffff;
+            font-size: 14px;
+        }
+        
+        .document {
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 1in;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 11in;
+        }
+        
+        /* Header Styles */
+        .document-header {
+            border-bottom: 3px solid #7c3aed;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+        
+        .document-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .document-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        
+        .document-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-size: 12px;
+            color: #475569;
+        }
+        
+        .meta-item {
+            display: flex;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            margin-right: 8px;
+            min-width: 100px;
+        }
+        
+        /* Architecture Banner */
+        .architecture-banner {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Section Styles */
+        .section {
+            margin-bottom: 35px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-icon {
+            margin-right: 12px;
+            font-size: 22px;
+        }
+        
+        /* Architecture Components */
+        .arch-component {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-left: 6px solid #7c3aed;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .component-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .component-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .technology-badge {
+            background-color: #ede9fe;
+            color: #7c3aed;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        /* Architecture Diagram Sections */
+        .diagram-container {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .diagram-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* Layer Visualization */
+        .architecture-layers {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .layer {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .layer-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .layer-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        
+        .component-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: #475569;
+        }
+        
+        /* Data Flow Visualization */
+        .data-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+        }
+        
+        .flow-node {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .flow-arrow {
+            font-size: 20px;
+            color: #7c3aed;
+            margin: 0 10px;
+        }
+        
+        /* Technology Stack */
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .tech-category {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .tech-category-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tech-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+        
+        .tech-list {
+            list-style: none;
+        }
+        
+        .tech-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .version-badge {
+            background: #ede9fe;
+            color: #7c3aed;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        /* Performance Specifications */
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .performance-metric {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #16a34a;
+            margin-bottom: 5px;
+        }
+        
+        .metric-label {
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        /* Security Architecture */
+        .security-layers {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 1px solid #fecaca;
+            border-left: 4px solid #dc2626;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .security-title {
+            font-weight: 600;
+            color: #dc2626;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .security-layer {
+            background: white;
+            border: 1px solid #fecaca;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        
+        .security-layer-title {
+            font-weight: 600;
+            color: #991b1b;
+            margin-bottom: 5px;
+        }
+        
+        /* Scalability Projections */
+        .scalability-chart {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .chart-bars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .chart-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .bar-container {
+            width: 30px;
+            height: 100px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .bar-fill {
+            background: linear-gradient(to top, #7c3aed, #a855f7);
+            border-radius: 4px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            transition: height 2s ease;
+        }
+        
+        .bar-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #475569;
+            text-align: center;
+        }
+        
+        .bar-value {
+            font-size: 10px;
+            color: #64748b;
+            margin-top: 5px;
+        }
+        
+        /* Interactive Elements */
+        .collapsible {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #334155;
+            transition: background-color 0.3s ease;
+        }
+        
+        .collapsible-header:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapsible-content.expanded {
+            max-height: 1000px;
+        }
+        
+        .collapsible-inner {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Print Styles */
+        @media print {
+            .document {
+                box-shadow: none;
+                margin: 0;
+                padding: 0.5in;
+            }
+            
+            .collapsible-content {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <!-- Document Header -->
+        <div class="document-header">
+            <h1 class="document-title">System Architecture Blueprint - Phase 2</h1>
+            <h2 class="document-subtitle">Advanced AI-Powered Personalization & Predictive Analytics Platform</h2>
+            
+            <div class="document-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Architecture Version:</span>
+                    <span>3.0</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date:</span>
+                    <span>March 25, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Architect:</span>
+                    <span>Senior Business Analyst - Technical Architecture Lead</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Review Status:</span>
+                    <span style="color: #16a34a; font-weight: 600;">Approved by CTO & Engineering Leadership</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Implementation:</span>
+                    <span>Phase 2 (Months 4-9)</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">ROI Projection:</span>
+                    <span style="color: #16a34a; font-weight: 600;">$833,333 Additional Monthly Revenue</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="architecture-banner">
+            🏗️ PHASE 2 SYSTEM ARCHITECTURE - AI-POWERED PERSONALIZATION ENGINE 🏗️<br>
+            Target: 5% additional abandonment reduction (20% → 15%) | Advanced ML/AI Implementation
+        </div>
+
+        <!-- Architecture Overview -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🏛️</span>
+                System Architecture Overview
+            </h2>
+            
+            <div class="diagram-container">
+                <div class="diagram-title">High-Level Architecture - AI-Powered E-commerce Platform</div>
+                
+                <div class="architecture-layers">
+                    <div class="layer">
+                        <div class="layer-title">Presentation Layer</div>
+                        <div class="layer-components">
+                            <div class="component-box">React Native Mobile App</div>
+                            <div class="component-box">Progressive Web App</div>
+                            <div class="component-box">Admin Dashboard</div>
+                            <div class="component-box">Real-time Analytics UI</div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-title">API Gateway & Orchestration</div>
+                        <div class="layer-components">
+                            <div class="component-box">GraphQL Federation</div>
+                            <div class="component-box">REST API Gateway</div>
+                            <div class="component-box">WebSocket Connections</div>
+                            <div class="component-box">Rate Limiting & Auth</div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-title">Microservices Architecture</div>
+                        <div class="layer-components">
+                            <div class="component-box">Personalization Service</div>
+                            <div class="component-box">ML Prediction Engine</div>
+                            <div class="component-box">User Behavior Analytics</div>
+                            <div class="component-box">Real-time Recommendations</div>
+                        </div>
+                    </div>
+                    
+                    <div class="layer">
+                        <div class="layer-title">Data & AI Infrastructure</div>
+                        <div class="layer-components">
+                            <div class="component-box">Feature Store</div>
+                            <div class="component-box">ML Model Registry</div>
+                            <div class="component-box">Real-time Analytics</div>
+                            <div class="component-box">Data Lake & Warehouse</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 15px; margin: 15px 0;">
+                <strong>Phase 2 Architecture Goals:</strong>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>AI-First Design:</strong> Machine learning embedded at every decision point</li>
+                    <li><strong>Real-time Personalization:</strong> Sub-100ms personalized experiences</li>
+                    <li><strong>Predictive Analytics:</strong> Proactive abandonment intervention</li>
+                    <li><strong>Scalable Infrastructure:</strong> Support for 10x traffic growth</li>
+                    <li><strong>A/B Testing Framework:</strong> Continuous optimization capabilities</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Core Components -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🧠</span>
+                AI-Powered Core Components
+            </h2>
+
+            <div class="arch-component">
+                <div class="component-header">
+                    <div class="component-title">Personalization Engine</div>
+                    <div class="technology-badge">TensorFlow + MLflow</div>
+                </div>
+                
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>Machine Learning Models & Algorithms</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                <div>
+                                    <strong>Collaborative Filtering:</strong>
+                                    <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                                        <li>Matrix Factorization (SVD)</li>
+                                        <li>Neural Collaborative Filtering</li>
+                                        <li>Item-to-item similarity</li>
+                                        <li>Real-time user embeddings</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <strong>Deep Learning Models:</strong>
+                                    <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                                        <li>Transformer-based recommendations</li>
+                                        <li>Graph Neural Networks (GNN)</li>
+                                        <li>Sequential pattern learning (LSTM)</li>
+                                        <li>Multi-armed bandit optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-flow">
+                    <div class="flow-node">User Interaction</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Feature Extraction</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">ML Inference</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Personalized Response</div>
+                </div>
+            </div>
+
+            <div class="arch-component">
+                <div class="component-header">
+                    <div class="component-title">Predictive Abandonment System</div>
+                    <div class="technology-badge">Python + Scikit-learn</div>
+                </div>
+                
+                <div class="collapsible">
+                    <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                        <span>Abandonment Prediction Models</span>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="collapsible-content">
+                        <div class="collapsible-inner">
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px;">
+                                <strong>Real-time Risk Scoring:</strong>
+                                <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                                    <li><strong>Behavioral Signals:</strong> Time on page, scroll patterns, mouse movement</li>
+                                    <li><strong>Contextual Factors:</strong> Device type, time of day, referrer source</li>
+                                    <li><strong>Historical Patterns:</strong> User's past behavior, similar user cohorts</li>
+                                    <li><strong>Cart Analysis:</strong> Product mix, price points, discount sensitivity</li>
+                                </ul>
+                                
+                                <div style="margin-top: 15px;">
+                                    <strong>Intervention Triggers:</strong>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 10px;">
+                                        <div style="background: #fee2e2; padding: 8px; border-radius: 4px; text-align: center; font-size: 11px;">
+                                            <strong>High Risk (>80%)</strong><br>
+                                            Immediate discount offer
+                                        </div>
+                                        <div style="background: #fef3c7; padding: 8px; border-radius: 4px; text-align: center; font-size: 11px;">
+                                            <strong>Medium Risk (50-80%)</strong><br>
+                                            Social proof notifications
+                                        </div>
+                                        <div style="background: #dcfce7; padding: 8px; border-radius: 4px; text-align: center; font-size: 11px;">
+                                            <strong>Low Risk (<50%)</strong><br>
+                                            Passive recommendations
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚙️</span>
+                Technology Stack & Infrastructure
+            </h2>
+
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <span class="tech-icon">🤖</span>
+                        Machine Learning & AI
+                    </div>
+                    <ul class="tech-list">
+                        <li class="tech-item">
+                            <span>TensorFlow Extended (TFX)</span>
+                            <span class="version-badge">v2.13</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>MLflow Model Registry</span>
+                            <span class="version-badge">v2.7</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Apache Airflow</span>
+                            <span class="version-badge">v2.7</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Feast Feature Store</span>
+                            <span class="version-badge">v0.34</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Ray Serve (ML Serving)</span>
+                            <span class="version-badge">v2.7</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <span class="tech-icon">☁️</span>
+                        Cloud Infrastructure
+                    </div>
+                    <ul class="tech-list">
+                        <li class="tech-item">
+                            <span>AWS EKS (Kubernetes)</span>
+                            <span class="version-badge">v1.28</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>AWS SageMaker</span>
+                            <span class="version-badge">Latest</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Amazon MSK (Kafka)</span>
+                            <span class="version-badge">v2.8</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Redis Enterprise</span>
+                            <span class="version-badge">v7.2</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Amazon RDS PostgreSQL</span>
+                            <span class="version-badge">v15.4</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <span class="tech-icon">📊</span>
+                        Data & Analytics
+                    </div>
+                    <ul class="tech-list">
+                        <li class="tech-item">
+                            <span>Apache Spark</span>
+                            <span class="version-badge">v3.4</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>ClickHouse (Analytics DB)</span>
+                            <span class="version-badge">v23.8</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Apache Superset</span>
+                            <span class="version-badge">v3.0</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>dbt (Data Transformation)</span>
+                            <span class="version-badge">v1.6</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Great Expectations</span>
+                            <span class="version-badge">v0.17</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tech-category">
+                    <div class="tech-category-title">
+                        <span class="tech-icon">🔧</span>
+                        Application Layer
+                    </div>
+                    <ul class="tech-list">
+                        <li class="tech-item">
+                            <span>Node.js + Express</span>
+                            <span class="version-badge">v20 LTS</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>GraphQL (Apollo)</span>
+                            <span class="version-badge">v4.9</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>React + Next.js</span>
+                            <span class="version-badge">v13.5</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>WebSocket.io</span>
+                            <span class="version-badge">v4.7</span>
+                        </li>
+                        <li class="tech-item">
+                            <span>Docker + Helm</span>
+                            <span class="version-badge">Latest</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Performance Specifications -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">⚡</span>
+                Performance & Scalability Specifications
+            </h2>
+
+            <div class="performance-grid">
+                <div class="performance-metric">
+                    <div class="metric-value">< 50ms</div>
+                    <div class="metric-label">ML Inference Latency</div>
+                </div>
+                <div class="performance-metric">
+                    <div class="metric-value">99.9%</div>
+                    <div class="metric-label">System Uptime</div>
+                </div>
+                <div class="performance-metric">
+                    <div class="metric-value">10,000</div>
+                    <div class="metric-label">Concurrent Users</div>
+                </div>
+                <div class="performance-metric">
+                    <div class="metric-value">< 100ms</div>
+                    <div class="metric-label">API Response Time</div>
+                </div>
+                <div class="performance-metric">
+                    <div class="metric-value">500K</div>
+                    <div class="metric-label">Events/Second</div>
+                </div>
+                <div class="performance-metric">
+                    <div class="metric-value">15TB</div>
+                    <div class="metric-label">Daily Data Processing</div>
+                </div>
+            </div>
+
+            <div class="scalability-chart">
+                <div style="font-weight: 600; color: #1e293b; margin-bottom: 15px; text-align: center;">
+                    Traffic Growth Projections & System Capacity
+                </div>
+                <div class="chart-bars">
+                    <div class="chart-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill" data-height="30%"></div>
+                        </div>
+                        <div class="bar-label">Current</div>
+                        <div class="bar-value">1K users</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill" data-height="50%"></div>
+                        </div>
+                        <div class="bar-label">Month 6</div>
+                        <div class="bar-value">3K users</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill" data-height="80%"></div>
+                        </div>
+                        <div class="bar-label">Month 12</div>
+                        <div class="bar-value">7K users</div>
+                    </div>
+                    <div class="chart-bar">
+                        <div class="bar-container">
+                            <div class="bar-fill" data-height="100%"></div>
+                        </div>
+                        <div class="bar-label">Target</div>
+                        <div class="bar-value">10K users</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Architecture -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🔒</span>
+                Security Architecture & Compliance
+            </h2>
+
+            <div class="security-layers">
+                <div class="security-title">Multi-Layer Security Framework</div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">Edge Security (CDN + WAF)</div>
+                    DDoS protection, geo-blocking, bot detection, rate limiting at CloudFlare edge
+                </div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">API Gateway Security</div>
+                    JWT authentication, OAuth 2.0, API rate limiting, request validation, threat detection
+                </div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">Application Security</div>
+                    Input sanitization, OWASP compliance, dependency scanning, secure coding practices
+                </div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">Data Security</div>
+                    Encryption at rest (AES-256), encryption in transit (TLS 1.3), field-level encryption for PII
+                </div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">Infrastructure Security</div>
+                    Network segmentation, VPC isolation, IAM role-based access, container security scanning
+                </div>
+                
+                <div class="security-layer">
+                    <div class="security-layer-title">ML Model Security</div>
+                    Model versioning, inference monitoring, adversarial attack detection, data poisoning prevention
+                </div>
+            </div>
+
+            <div style="background-color: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px; padding: 15px; margin: 15px 0;">
+                <strong>Compliance Standards:</strong>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <div>✅ PCI DSS Level 1</div>
+                    <div>✅ SOC 2 Type II</div>
+                    <div>✅ GDPR Compliance</div>
+                    <div>✅ ISO 27001</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Architecture -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🗄️</span>
+                Data Architecture & ML Pipeline
+            </h2>
+
+            <div class="diagram-container">
+                <div class="diagram-title">End-to-End ML Data Pipeline</div>
+                
+                <div class="data-flow">
+                    <div class="flow-node">Real-time Events</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Kafka Streaming</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Feature Engineering</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Model Training</div>
+                </div>
+                
+                <div class="data-flow">
+                    <div class="flow-node">Batch Processing</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Data Warehouse</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Feature Store</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-node">Model Serving</div>
+                </div>
+            </div>
+
+            <div class="arch-component">
+                <div class="component-header">
+                    <div class="component-title">ML Operations (MLOps) Pipeline</div>
+                    <div class="technology-badge">Kubeflow + MLflow</div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px;">
+                        <strong>Automated ML Workflow:</strong>
+                        <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                            <li>Data validation and quality checks</li>
+                            <li>Feature engineering automation</li>
+                            <li>Model training and hyperparameter tuning</li>
+                            <li>A/B testing framework integration</li>
+                            <li>Model deployment and monitoring</li>
+                            <li>Performance degradation alerts</li>
+                        </ul>
+                    </div>
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px;">
+                        <strong>Model Lifecycle Management:</strong>
+                        <ul style="margin: 10px 0 0 20px; font-size: 12px;">
+                            <li>Version control for models and datasets</li>
+                            <li>Experiment tracking and comparison</li>
+                            <li>Blue-green deployment strategies</li>
+                            <li>Rollback capabilities</li>
+                            <li>Model governance and compliance</li>
+                            <li>Resource optimization and cost management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Roadmap -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-icon">🗓️</span>
+                Implementation Roadmap - Phase 2
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 600; color: #1e293b; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #7c3aed; padding-bottom: 8px;">
+                        Months 4-5: Foundation
+                    </div>
+                    <ul style="font-size: 12px; margin-left: 20px;">
+                        <li>ML infrastructure setup</li>
+                        <li>Data pipeline construction</li>
+                        <li>Feature store implementation</li>
+                        <li>Model development environment</li>
+                        <li>Security framework integration</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 600; color: #1e293b; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #7c3aed; padding-bottom: 8px;">
+                        Months 6-7: Core ML
+                    </div>
+                    <ul style="font-size: 12px; margin-left: 20px;">
+                        <li>Personalization engine development</li>
+                        <li>Abandonment prediction models</li>
+                        <li>A/B testing framework</li>
+                        <li>Real-time inference setup</li>
+                        <li>Performance optimization</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                    <div style="font-weight: 600; color: #1e293b; margin-bottom: 15px; text-align: center; border-bottom: 2px solid #7c3aed; padding-bottom: 8px;">
+                        Months 8-9: Launch
+                    </div>
+                    <ul style="font-size: 12px; margin-left: 20px;">
+                        <li>Production deployment</li>
+                        <li>Advanced monitoring setup</li>
+                        <li>Stakeholder training</li>
+                        <li>Performance validation</li>
+                        <li>Continuous optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Architecture Validation -->
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e2e8f0; font-size: 11px; color: #64748b;">
+            <strong>Architecture Review & Validation:</strong><br>
+            • CTO Office: Senior Principal Architect - Approved 03/24/2025<br>
+            • Engineering Leadership: VP Engineering - Approved 03/25/2025<br>
+            • ML Engineering: Lead ML Engineer - Approved 03/25/2025<br>
+            • Security Architecture: CISO - Approved 03/26/2025<br>
+            • Infrastructure Lead: Principal DevOps Engineer - Approved 03/25/2025<br><br>
+            
+            <strong>Expected Phase 2 Business Impact:</strong><br>
+            • Additional 5% abandonment reduction (20% → 15%)<br>
+            • $833,333 additional monthly revenue recovery<br>
+            • 25% improvement in customer lifetime value<br>
+            • 50% reduction in customer acquisition cost through better retention
+        </div>
+    </div>
+
+    <script>
+        function toggleCollapsible(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            
+            content.classList.toggle('expanded');
+            icon.classList.toggle('rotated');
+        }
+
+        // Add interactive effects and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate chart bars
+            setTimeout(() => {
+                const bars = document.querySelectorAll('.bar-fill');
+                bars.forEach(bar => {
+                    const height = bar.getAttribute('data-height');
+                    bar.style.height = height;
+                });
+            }, 500);
+
+            // Add hover effects to components
+            const components = document.querySelectorAll('.arch-component, .tech-category');
+            components.forEach(component => {
+                component.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                component.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                });
+            });
+
+            // Add pulse effect to performance metrics
+            const metrics = document.querySelectorAll('.performance-metric');
+            metrics.forEach((metric, index) => {
+                setTimeout(() => {
+                    metric.style.animation = 'pulse 2s infinite';
+                }, index * 200);
+            });
+
+            // Architecture layers fade-in animation
+            const layers = document.querySelectorAll('.layer');
+            const layerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+
+            layers.forEach((layer, index) => {
+                layer.style.opacity = '0';
+                layer.style.transform = 'translateX(-20px)';
+                layer.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                layerObserver.observe(layer);
+            });
+
+            // Add print button
+            const printButton = document.createElement('button');
+            printButton.textContent = '🖨️ Print Architecture';
+            printButton.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #7c3aed, #5b21b6);
+                color: white;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+                z-index: 1000;
+                transition: all 0.3s ease;
+            `;
+            
+            printButton.addEventListener('click', () => window.print());
+            document.body.appendChild(printButton);
+
+            // Add CSS animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0%, 100% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

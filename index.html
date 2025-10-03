@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Case Study - Complete Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .portfolio-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+        
+        .card-title {
+            color: #667eea;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .card-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .main-deliverable {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .main-deliverable .card-title {
+            color: white;
+            font-size: 1.5em;
+        }
+        
+        .main-deliverable .card-description {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .stats-section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            opacity: 0.8;
+            margin-top: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .main-deliverable {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 E-commerce Case Study Portfolio</h1>
+            <p>Professional Business Analysis Deliverables - Checkout Abandonment Reduction Project</p>
+        </div>
+        
+        <div class="stats-section">
+            <h2 style="color: #667eea; margin-bottom: 20px;">Project Impact Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">30% → 20%</span>
+                    <div class="stat-label">Cart Abandonment Reduction</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$166K</span>
+                    <div class="stat-label">Monthly Revenue Recovery</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">196%</span>
+                    <div class="stat-label">Year 1 ROI</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <div class="stat-label">Stakeholder Teams Aligned</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="portfolio-grid">
+            <!-- Main Case Study -->
+            <div class="portfolio-card main-deliverable">
+                <div class="card-header">
+                    <span class="card-icon">📋</span>
+                    <h3 class="card-title">Complete Case Study Presentation</h3>
+                </div>
+                <p class="card-description">
+                    The comprehensive case study showcasing advanced business analysis skills including stakeholder management, 
+                    requirements engineering, financial modeling, and strategic implementation planning.
+                </p>
+                <div class="card-links">
+                    <a href="E-commerce_Case_Study_Professional.html" class="btn btn-primary">
+                        🌐 View Professional HTML Version
+                    </a>
+                    <a href="E-commerce_Case_Study_Presentation.md" class="btn btn-secondary">
+                        📄 Download Markdown Version
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deliverable 1 -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="card-icon">⚖️</span>
+                    <h3 class="card-title">Stakeholder Conflict Resolution Matrix</h3>
+                </div>
+                <p class="card-description">
+                    Comprehensive documentation of opposing stakeholder views (Marketing vs. Security) and the strategic 
+                    compromise solutions that enabled project success and alignment.
+                </p>
+                <div class="card-links">
+                    <a href="deliverables/Stakeholder_Conflict_Resolution_Matrix.md" class="btn btn-primary">
+                        📖 View Document
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deliverable 2 -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="card-icon">🗺️</span>
+                    <h3 class="card-title">Customer Journey Maps</h3>
+                </div>
+                <p class="card-description">
+                    Detailed "As-Is" vs "To-Be" customer journey analysis showing the 30% abandonment funnel and 
+                    the optimized guest checkout flow with specific friction point removal.
+                </p>
+                <div class="card-links">
+                    <a href="deliverables/Customer_Journey_Maps.md" class="btn btn-primary">
+                        🔍 Explore Journeys
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deliverable 3 -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <h3 class="card-title">Requirements Specification (Phase 1)</h3>
+                </div>
+                <p class="card-description">
+                    Formal requirements document detailing Functional Requirements (FRs 1.1, 1.2) and critical 
+                    Non-Functional Requirements (NFR 1.1) balancing speed, security, and user experience.
+                </p>
+                <div class="card-links">
+                    <a href="deliverables/Requirements_Specification_Document_Phase1.md" class="btn btn-primary">
+                        📋 Review Requirements
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deliverable 4 -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="card-icon">💰</span>
+                    <h3 class="card-title">ROI & Unit Economics Model</h3>
+                </div>
+                <p class="card-description">
+                    Comprehensive financial justification including the $166,667 monthly revenue recovery calculation, 
+                    cost-benefit analysis, and 3-year NPV projections with risk scenarios.
+                </p>
+                <div class="card-links">
+                    <a href="deliverables/ROI_Unit_Economics_Model.md" class="btn btn-primary">
+                        💹 View Financial Model
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Deliverable 5 -->
+            <div class="portfolio-card">
+                <div class="card-header">
+                    <span class="card-icon">🏗️</span>
+                    <h3 class="card-title">System Architecture Blueprint</h3>
+                </div>
+                <p class="card-description">
+                    Future-state architecture design for Phase 2, outlining Customer Data Platform (CDP) integration 
+                    and modern payment APIs to ensure scalable, competitive e-commerce infrastructure.
+                </p>
+                <div class="card-links">
+                    <a href="deliverables/System_Architecture_Blueprint_Phase2.md" class="btn btn-primary">
+                        🔧 Explore Architecture
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📧 Professional Business Analysis Portfolio | Demonstrating Enterprise-Level BA Skills</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                This portfolio showcases comprehensive business analysis capabilities including stakeholder management, 
+                requirements engineering, financial modeling, and strategic technology planning.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
