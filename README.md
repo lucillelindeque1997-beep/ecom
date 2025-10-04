@@ -22,47 +22,67 @@ A comprehensive business analysis portfolio showcasing advanced stakeholder mana
 ### 📁 Portfolio Structure
 
 ```
-├── index.html                                    # Portfolio Homepage
-├── E-commerce_Case_Study_Professional.html       # Main Case Study
-├── deliverables/
+quickfix/
+├── README.md                                    # This portfolio overview
+├── E-commerce_Case_Study_Professional.html     # Main case study presentation
+├── ecom.md                                     # Original source document
+├── Project Artifacts:
 │   ├── Stakeholder_Conflict_Resolution_Matrix.html
 │   ├── Customer_Journey_Maps.html
 │   ├── Requirements_Specification_Document_Phase1.html
 │   ├── ROI_Unit_Economics_Model.html
 │   └── System_Architecture_Blueprint_Phase2.html
-└── ecom.md                                      # Original source document
+└── Markdown Sources:
+    ├── Customer_Journey_Maps.md
+    ├── Requirements_Specification_Document_Phase1.md
+    ├── ROI_Unit_Economics_Model.md
+    ├── Stakeholder_Conflict_Resolution_Matrix.md
+    └── System_Architecture_Blueprint_Phase2.md
 ```
+
+**📂 Direct Document Access:**
+- [Main Case Study](E-commerce_Case_Study_Professional.html) - Complete project overview
+- [Stakeholder Resolution](Stakeholder_Conflict_Resolution_Matrix.html) - Conflict management framework
+- [Customer Journey Analysis](Customer_Journey_Maps.html) - User experience optimization
+- [Requirements Documentation](Requirements_Specification_Document_Phase1.html) - Technical specifications
+- [Financial Analysis](ROI_Unit_Economics_Model.html) - ROI and revenue modeling
+- [System Architecture](System_Architecture_Blueprint_Phase2.html) - Technical blueprint
 
 ### 🔗 Live Demo
 
 Visit the live portfolio: [GitHub Pages Link](https://yourusername.github.io/ba-portfolio/)
 
-### 📋 Key Deliverables
+### 📋 Key Deliverables & Project Artifacts
 
-1. **🤝 Stakeholder Conflict Resolution Matrix**
+1. **🤝 [Stakeholder Conflict Resolution Matrix](Stakeholder_Conflict_Resolution_Matrix.html)**
    - Documented opposing team positions (Marketing vs. Security)
    - Strategic compromise solutions enabling project progression
    - Complete stakeholder alignment framework
+   - **View Document:** [Stakeholder_Conflict_Resolution_Matrix.html](Stakeholder_Conflict_Resolution_Matrix.html)
 
-2. **🛍️ Customer Journey Maps**
+2. **🛍️ [Customer Journey Maps](Customer_Journey_Maps.html)**
    - Interactive current vs. proposed flow visualizations
    - Detailed friction point analysis and optimization opportunities
    - Mobile and desktop experience comparisons
+   - **View Document:** [Customer_Journey_Maps.html](Customer_Journey_Maps.html)
 
-3. **📋 Requirements Specification Document**
+3. **📋 [Requirements Specification Document](Requirements_Specification_Document_Phase1.html)**
    - Comprehensive functional and non-functional requirements
    - Detailed acceptance criteria and performance specifications  
    - Security-performance balance framework
+   - **View Document:** [Requirements_Specification_Document_Phase1.html](Requirements_Specification_Document_Phase1.html)
 
-4. **📊 ROI & Unit Economics Model**
+4. **📊 [ROI & Unit Economics Model](ROI_Unit_Economics_Model.html)**
    - Financial justification with sensitivity analysis
    - $166,667 Phase 1 monthly recovery calculations
    - Long-term revenue projection scenarios
+   - **View Document:** [ROI_Unit_Economics_Model.html](ROI_Unit_Economics_Model.html)
 
-5. **🏗️ System Architecture Blueprint**
+5. **🏗️ [System Architecture Blueprint](System_Architecture_Blueprint_Phase2.html)**
    - AI-powered personalization engine design
    - Scalable infrastructure supporting 10x growth
    - Modern technology stack specifications
+   - **View Document:** [System_Architecture_Blueprint_Phase2.html](System_Architecture_Blueprint_Phase2.html)
 
 ### 🛠️ Technologies Used
 
